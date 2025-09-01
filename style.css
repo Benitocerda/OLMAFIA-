@@ -2,13 +2,23 @@
 /* OL MAFIA — Modern Sport/Training Theme
    Color system is intentionally minimal with an accent. */
 
+/* OL MAFIA — Modern Sport/Training Theme (Black / White / Gold) */
+
 :root{
   --bg:#0b0b0d;        /* near-black */
   --surface:#121216;   /* panels */
   --text:#f2f2f5;      /* primary text */
   --muted:#a8acb3;     /* secondary text */
-  --accent:#00ffa0;    /* neon performance green */
+
+  /* GOLD accent (was neon green) */
+  --accent:#FFD700;    /* gold */
   --accent-2:#ff3b30;  /* action red (sparingly) */
+
+  /* On-white helpers */
+  --on-white:#0b0b0d;
+  --white:#ffffff;
+  --white-2:#f6f7f9;
+
   --radius:18px;
 
   /* Motion & timing; toggled by .slow on <body> */
@@ -72,24 +82,19 @@ img{max-width:100%; display:block}
   overflow:hidden;
 }
 .hero::before{
-  /* grain & vignette */
+  /* subtle gold glow + vignette */
   content:""; position:absolute; inset:-2px; z-index:-1;
   background:
-    radial-gradient(1200px 400px at 50% -10%, rgba(0,255,160,.2), transparent 60%),
+    radial-gradient(1200px 400px at 50% -10%, rgba(255,215,0,.22), transparent 60%),
     radial-gradient(900px 400px at 100% 10%, rgba(255,59,48,.18), transparent 60%),
     linear-gradient(180deg, #0b0b0d 0%, #0b0b0d 60%, #0b0b0d 100%);
-  opacity:.9;
+  opacity:.95;
 }
-.hero .headline{
-  display:grid; gap:20px; max-width:900px;
-}
+.hero .headline{display:grid; gap:20px; max-width:900px}
 .kicker{
   color:var(--accent); font-weight:700; letter-spacing:.2em; text-transform:uppercase;
 }
-.h1{
-  font-size: clamp(36px, 6vw, 68px);
-  line-height:1.05; font-weight:900; letter-spacing:.02em;
-}
+.h1{font-size: clamp(36px, 6vw, 68px); line-height:1.05; font-weight:900; letter-spacing:.02em}
 .sub{color:var(--muted); font-size:clamp(16px, 1.8vw, 20px); max-width:72ch}
 
 /* CTA buttons */
@@ -97,10 +102,10 @@ img{max-width:100%; display:block}
 .btn{
   display:inline-flex; align-items:center; gap:.6rem;
   padding:12px 18px; border-radius:12px; font-weight:700; border:1px solid transparent;
-  transition:transform var(--dur) var(--easing), background var(--dur) var(--easing), border-color var(--dur) var(--easing);
+  transition:transform var(--dur) var(--easing), background var(--dur) var(--easing), border-color var(--dur) var(--easing), box-shadow var(--dur) var(--easing);
 }
-.btn.primary{background:var(--accent); color:#0b0b0d}
-.btn.primary:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--accent); color:var(--on-white)}
+.btn.primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(255,215,0,.25)}
 .btn.ghost{border-color:rgba(255,255,255,.16); color:var(--text); background:rgba(255,255,255,.04)}
 .btn.ghost:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.28)}
 
@@ -119,6 +124,20 @@ img{max-width:100%; display:block}
 .card h3{margin:8px 0 10px}
 .card p{color:var(--muted)}
 
+/* Optional white card for contrast */
+.card.white{
+  background:linear-gradient(180deg, var(--white), var(--white-2));
+  color:var(--on-white);
+  border:1px solid rgba(0,0,0,.08);
+}
+.card.white p{color:#222}
+.card.white .btn.ghost{
+  color:var(--on-white);
+  background:rgba(0,0,0,.04);
+  border-color:rgba(0,0,0,.14);
+}
+.card.white .btn.ghost:hover{border-color:rgba(0,0,0,.24)}
+
 /* Marquee */
 .marquee{
   border-top:1px solid rgba(255,255,255,.08);
@@ -129,11 +148,8 @@ img{max-width:100%; display:block}
 .marquee-track{
   display:inline-block; padding:12px 0; animation:slide var(--marquee-speed, 15s) linear infinite;
 }
-.marquee span{opacity:.8; margin:0 24px; letter-spacing:.12em; text-transform:uppercase}
-@keyframes slide{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
+.marquee span{color:var(--accent); opacity:.9; margin:0 24px; letter-spacing:.12em; text-transform:uppercase}
+@keyframes slide{from{transform:translateX(0)} to{transform:translateX(-50%)}}
 
 /* Footer */
 .footer{padding:50px 0; color:var(--muted)}
@@ -143,7 +159,7 @@ img{max-width:100%; display:block}
 /* About hero with background image */
 .hero-image{
   padding: clamp(120px, 28vh, 220px) 0;
-  background: linear-gradient(180deg, rgba(11,11,13,.5), rgba(11,11,13,.85)), center/cover no-repeat url("../assets/img/gym_backdrop.jpg");
+  background: linear-gradient(180deg, rgba(11,11,13,.45), rgba(11,11,13,.85)), center/cover no-repeat url("../assets/img/gym_backdrop.jpg");
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 .hero-image .h1{ text-shadow: 0 6px 22px rgba(0,0,0,.6) }
@@ -152,6 +168,13 @@ img{max-width:100%; display:block}
 .section{padding:70px 0}
 .prose{color:var(--muted); font-size:18px; max-width:70ch}
 .prose h2{color:var(--text)}
+
+/* Optional light section block */
+.section.on-white{
+  background:linear-gradient(180deg, var(--white), var(--white-2));
+  color:var(--on-white);
+}
+.section.on-white .prose{color:#333}
 
 /* Responsive */
 @media (max-width: 900px){
