@@ -1,0 +1,69 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>About — OL MAFIA</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <img src="assets/img/logo_tux.png" alt="OL MAFIA logo">
+        <span class="name">OL MAFIA</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="slides.html">Deck</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a href="#" class="toggle" data-toggle="slow" title="Slow animations">
+        <span>Slow</span>
+        <span class="switch" aria-hidden="true"></span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Full-bleed hero with the supplied training image as the backdrop -->
+  <section class="hero-image">
+    <div class="container headline" data-reveal>
+      <div class="kicker">Our Why</div>
+      <h1 class="h1">We build linemen who finish what they start.</h1>
+      <p class="sub">Inside the walls. On Friday nights. In the weight room. And in life.</p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="grid">
+      <div class="card" style="grid-column:span 8" data-reveal>
+        <h3>Made, Not Born</h3>
+        <p class="prose">The OL MAFIA ethos is simple: stack disciplined days. Our sessions focus on footwork mechanics, leverage, and explosive power. We coach loud, keep groups small, and track progress.</p>
+      </div>
+      <div class="card" style="grid-column:span 4; display:grid; place-items:center" data-reveal>
+        <img src="assets/img/logo_wordmark.png" alt="OL MAFIA wordmark" style="width:80%">
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 data-reveal>Values</h2>
+    <div class="grid">
+      <div class="card" data-reveal><h3>Relentless</h3><p>Effort is the tax to train here.</p></div>
+      <div class="card" data-reveal><h3>Technical</h3><p>Hands, hips, feet—repeat until automatic.</p></div>
+      <div class="card" data-reveal><h3>Accountable</h3><p>We show up for each other and we finish.</p></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container row">
+      <div class="brand"><img src="assets/img/logo_tux.png" alt=""><span class="name">OL MAFIA</span></div>
+      <div>© <span id="y"></span> OL MAFIA</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
