@@ -1,0 +1,79 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>OL MAFIA — Deck</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .deck{height:100vh; display:grid; place-items:center; background:var(--bg);}
+    .slide{
+      width:min(1100px, 92vw); height:min(640px, 70vh);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.1); border-radius:var(--radius);
+      display:grid; grid-template-rows:auto 1fr auto; padding:28px; gap:16px;
+      box-shadow:0 20px 70px rgba(0,0,0,.45);
+    }
+    .slide .title{font-size: clamp(26px, 4vw, 40px); font-weight:900;}
+    .slide .content{font-size: clamp(18px, 2vw, 22px); color:var(--muted)}
+    .progress{height:4px; background:rgba(255,255,255,.1); border-radius:4px; overflow:hidden}
+    .progress > i{display:block; height:100%; width:0; background:var(--accent); transition:width var(--dur) var(--easing)}
+    .deck .help{position:fixed; bottom:18px; right:18px; color:var(--muted); font-size:14px}
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <div class="slide" id="slide">
+      <div class="title">OL MAFIA Philosophy</div>
+      <div class="content">
+        <p><b>Great athletes are made, not born.</b> Our approach blends footwork craft, strength, and film IQ with a relentless standard.</p>
+        <ul>
+          <li>Technique &amp; Leverage</li>
+          <li>Explosive Starts</li>
+          <li>Recovery &amp; Durability</li>
+          <li>Leadership &amp; Culture</li>
+        </ul>
+      </div>
+      <div class="progress"><i id="bar"></i></div>
+    </div>
+    <div class="help">←/→ to navigate · S toggles Slow · F toggles fullscreen</div>
+  </div>
+<script>
+  const slides = [
+    {title:"OL MAFIA Philosophy", content:`<p><b>Great athletes are made, not born.</b> Our approach blends footwork craft, strength, and film IQ with a relentless standard.</p>
+      <ul><li>Technique &amp; Leverage</li><li>Explosive Starts</li><li>Recovery &amp; Durability</li><li>Leadership &amp; Culture</li></ul>`},
+    {title:"Program Tiers", content:`<p><b>Foundation</b> (fundamentals &amp; mobility) · <b>Gray</b> (position craft &amp; speed) · <b>Black</b> (elite refinement &amp; leadership).</p>`},
+    {title:"Weekly Rhythm", content:`<ul>
+      <li>Day 1 — Footwork &amp; Agility (indoor turf)</li>
+      <li>Day 2 — Strength &amp; Power (compound lifts)</li>
+      <li>Day 3 — Film IQ &amp; Situational</li>
+    </ul>`},
+    {title:"Commitment", content:`<p>We keep groups small, coach loud, and track progress. Show up. Stack days.</p>`},
+  ];
+  let i=0;
+  const el = document.getElementById('slide');
+  const bar = document.getElementById('bar');
+  function render(){
+    el.querySelector('.title').innerHTML = slides[i].title;
+    el.querySelector('.content').innerHTML = slides[i].content;
+    bar.style.width = ((i+1)/slides.length*100)+'%';
+    document.title = 'OL MAFIA — '+slides[i].title;
+  }
+  function next(){ i = (i+1) % slides.length; render(); }
+  function prev(){ i = (i-1+slides.length) % slides.length; render(); }
+  render();
+
+  // keyboard
+  window.addEventListener('keydown', e=>{
+    if(e.key === 'ArrowRight') next();
+    if(e.key === 'ArrowLeft') prev();
+    if(e.key.toLowerCase() === 's'){ document.body.classList.toggle('slow'); }
+    if(e.key.toLowerCase() === 'f'){
+      if(!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+</script>
+</body>
+</html>
